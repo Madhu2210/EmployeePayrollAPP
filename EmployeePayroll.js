@@ -1,55 +1,72 @@
 class EmployeePayrollData {
 
-
     //getter and setter method
-    id() {
-        return this._id = id;
-    }
-    id(id) {
+    get id() {
+        return this._id;
+      }
+    
+      set id(id) {
         this._id = id;
-    }
-    name() {
+      }
+    
+      get name() {
         return this._name;
-    }
-    set name(name) {
-
-        this._name = name;
-    }
-    profilePic() {
+      }
+    
+      set name(name) {
+        let nameRegex = RegExp("^[A-Z]{1}[a-z]{2,}$");
+        if (nameRegex.test(name)) this._name = name;
+        else throw "Incorrect Name";
+      }
+    
+      get profilePic() {
         return this._profilePic;
-    }
-    profilePic(profilePic) {
+      }
+      set profilePic(profilePic) {
         this._profilePic = profilePic;
-    }
-    gender() {
+      }
+    
+      get gender() {
         return this._gender;
-    }
-    gender(gender) {
+      }
+    
+      set gender(gender) {
         this._gender = gender;
-    }
-    get department() {
-        return this._deparment;
-    }
-    set department(department) {
-        this._deparment = department;
-    }
-    get salary() {
+      }
+    
+      get department() {
+        return this._department;
+      }
+    
+      set department(department) {
+        this._department = department;
+      }
+    
+      get salary() {
         return this._salary;
-    }
-    set salary(salary) {
+      }
+    
+      set salary(salary) {
         this._salary = salary;
-    }
-    get note() {
+      }
+    
+      get note() {
         return this._note;
-    }
-    set note(note) {
+      }
+    
+      set note(note) {
         this._note = note;
-    }
-    get startDate() {
+      }
+    
+      get startDate() {
         return this._startDate;
-    }
-    set startDate(startDate) {
-
-        this._startDate = startDate;
+      }
+    
+      set startDate(startDate) {
+        let actualDate = new Date(startDate).getTime();
+        let currentDate = new Date().getTime();
+        if (actualDate > currentDate) {
+          throw "Future Date. Date is Invalid";
+        } else this._startDate =JSON.stringify(new Date(startDate).toLocaleDateString());
     }
 }
